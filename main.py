@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
     'http://127.0.0.1:5173',
+    "https://python-react-app-frontend-kx3s.vercel.app/"
 ]
 
 
