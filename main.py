@@ -9,12 +9,13 @@ from fastapi.middleware.cors import CORSMiddleware
 # import pickle
 # from fastapi import FastAPI
 # import pickle
+from routers import task, done
 
 origins = [
     'http://127.0.0.1:5173',
-    "https://python-react-app-frontend-kx3s.vercel.app/"
+    'http://127.0.0.1:5174',
+    "https://python-react-app-frontend-kx3s.vercel.app",
 ]
-
 
 
 # iris_datasets = load_iris()
@@ -47,6 +48,10 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+
+app.include_router(task.router)
+app.include_router(done.router)
+
 #chat(推論モジュール)のセッティング
 chat = ChatFunction('rinna/japanese-gpt2-medium')
 #rinna株式会社様がHuggingFaceで公開されている日本語のGPT-2のテキスト生成モデル
@@ -77,3 +82,4 @@ def message(msg: Message):
     )
     return {"message": output}
     #結果を返す
+
